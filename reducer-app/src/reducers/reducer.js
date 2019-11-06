@@ -10,6 +10,21 @@ export const appReducer = (state, action) => {
                     id: Date.now()
                 }
             ]
+        case 'MARK_COMPLETE'    : 
+          return state.map(todo => {
+              if(todo.id === action.payload.id) {
+                  return {
+                      ...todo,
+                    completed: !todo.completed
+                  }
+              } else {
+                  return todo
+              }
+            
+          })
+
+          case 'CLEAR' :
+              return state.filter(todo => !todo.completed)
     }
 }
 
